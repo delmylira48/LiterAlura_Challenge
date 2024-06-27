@@ -8,7 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class LlamadaApi {
-    private final String URL = "https://gutendex.com/books?search=";
+    private  String URL = "https://gutendex.com/books/?search=";
     private String nombreLibro;
     private String contenidoJsonResult;
 
@@ -18,20 +18,24 @@ public class LlamadaApi {
 
     public String realizarLlamada() {
         try {
+            var url = URL+nombreLibro.replace(" ", "+");
+
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(new URI(URL + nombreLibro.replace(" ", "+")))
+                    .uri(URI.create(url))
                     .build();
 
             HttpResponse httpResponse= httpClient
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            System.out.println(httpResponse.body());
+            contenidoJsonResult = (String) httpResponse.body();
+            System.out.println("contenidojson "+ contenidoJsonResult);
 
-            contenidoJsonResult = httpResponse.body().toString();
 
-        } catch (URISyntaxException | IOException | InterruptedException e) {
-            throw new RuntimeException("OCURRIO UN ERROR EN LA LLAMADA API");
+        } catch (IOException | InterruptedException e) {
+            System.out.println(e.getMessage());
         }
-
         return contenidoJsonResult;
+
     }
 }
