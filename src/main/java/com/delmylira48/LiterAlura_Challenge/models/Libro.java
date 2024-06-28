@@ -12,8 +12,9 @@ public class Libro {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String titulo;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private List<Lenguajes> lenguajes;
     private int descargas;
@@ -28,6 +29,16 @@ public class Libro {
             this.lenguajes= libros.lenguajes().stream().map(e -> Lenguajes.fromString(e)).collect(Collectors.toList());
             System.out.println(this.lenguajes.toString());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", lenguajes=" + lenguajes +
+                ", descargas=" + descargas +
+                '}';
     }
 
     public Libro() {

@@ -11,11 +11,20 @@ public class Autores_libros {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Override
+    public String toString() {
+        return "Autores_libros{" +
+                "id=" + id +
+                ", autor=" + autor +
+                ", libro=" + libro +
+                '}';
+    }
+
     @ManyToOne
     @JoinColumn(name = "autor_id")
     private Autor autor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "libro_id")
     private Libro libro;
 

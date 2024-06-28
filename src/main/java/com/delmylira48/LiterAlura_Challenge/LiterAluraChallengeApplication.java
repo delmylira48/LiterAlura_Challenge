@@ -20,6 +20,6 @@ public class LiterAluraChallengeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		principal.llamarAPI();
+		principal.presentarMenu();
 	}
 }

@@ -27,9 +27,7 @@ public class LlamadaApi {
 
             HttpResponse httpResponse= httpClient
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            System.out.println(httpResponse.body());
             contenidoJsonResult = (String) httpResponse.body();
-            System.out.println("contenidojson "+ contenidoJsonResult);
 
 
         } catch (IOException | InterruptedException e) {

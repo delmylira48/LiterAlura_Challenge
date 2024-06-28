@@ -21,6 +21,16 @@ public class Autor {
         this.anioFallecimiento= autorDTO.anioFallecimiento();
     }
 
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", nombreAutor='" + nombreAutor + '\'' +
+                ", anioNacimiento=" + anioNacimiento +
+                ", anioFallecimiento=" + anioFallecimiento +
+                '}';
+    }
+
     public Autor() {
 
     }
